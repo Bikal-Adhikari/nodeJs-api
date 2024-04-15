@@ -1,6 +1,7 @@
 import express from "express";
 const app = express();
 import morgan from "morgan";
+import taskRouter from "./src/routers/taskRouter.js";
 
 const PORT = process.env.PORT || 8000;
 
@@ -8,11 +9,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use(morgan("dev"));
 
-app.use("/", (req, res) => {
-  res.json({
-    message: "TODO.......",
-  });
-});
+app.use("/api/v1/tasks", taskRouter);
 
 app.listen(PORT, (error) => {
   error

@@ -1,4 +1,8 @@
 ### Get list from server
 
 
-GET http://localhost:8000
+GET http://localhost:8000/api/v1/tasks
+
+
+### Post data to server
+POST http://localhost:8000/api/v1/tasks
