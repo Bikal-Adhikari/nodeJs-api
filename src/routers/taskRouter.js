@@ -1,5 +1,6 @@
 import express from "express";
 import { idGenerator } from "../utils.js";
+import { insertTask } from "../models/task/taskModel.js";
 const router = express.Router();
 
 let fakeDb = [];
@@ -16,12 +17,22 @@ router.get("/", (req, res) => {
 
 //POST data
 
-router.post("/", (req, res) => {
-  const id = idGenerator();
-  fakeDb.push({ ...req.body, id }); //add to the database
-  res.json({
-    message: `New data has been added`,
-  });
+router.post("/", async (req, res) => {
+  //   const id = idGenerator();
+  //   fakeDb.push({ ...req.body, id }); //add to the database
+
+  try {
+    const result = await insertTask(req.body);
+    result?._id
+      ? res.json({
+          message: `New data has been added`,
+        })
+      : res.json({
+          message: `Failed to add new data`,
+        });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //update data
