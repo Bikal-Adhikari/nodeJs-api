@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 8000;
 //middlewares
 
 app.use(morgan("dev"));
-
 app.use(express.json());
 
 app.use("/api/v1/tasks", taskRouter);

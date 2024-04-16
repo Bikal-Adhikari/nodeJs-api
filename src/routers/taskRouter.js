@@ -1,4 +1,5 @@
 import express from "express";
+import { idGenerator } from "../utils.js";
 const router = express.Router();
 
 const fakeDb = [];
@@ -8,7 +9,7 @@ const fakeDb = [];
 
 router.get("/", (req, res) => {
   res.json({
-    message: `Welcome to the API!`,
+    message: `Here are the tasks`,
     data: fakeDb,
   });
 });
@@ -16,10 +17,20 @@ router.get("/", (req, res) => {
 //POST data
 
 router.post("/", (req, res) => {
-  console.log(req.body);
-  fakeDb.push(req.body); //add to the database
+  const id = idGenerator();
+  fakeDb.push({ ...req.body, id }); //add to the database
   res.json({
     message: `New data has been added`,
+  });
+});
+
+//update data
+
+router.patch("/", (req, res) => {
+  const { id, type } = req.body;
+
+  res.json({
+    message: "Your task has been updated",
   });
 });
 
