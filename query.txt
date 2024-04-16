@@ -1,0 +1,28 @@
+
+insert single object
+db.users.insertOne({
+    name:"Bikal",
+    add:"sydney",
+    number:"12345"
+})
+
+insert many  objects
+    db.users.insertMany([
+    {
+        name: "John",
+        address: "New York",
+        number: "67890"
+    },
+    {
+        name: "Emily",
+        address: "London",
+        number: "54321",
+        email:"abc@gmail.com"
+    },
+    {
+        name: "David",
+        address: "Paris",
+        number: "98765"
+    }
+]);
+
