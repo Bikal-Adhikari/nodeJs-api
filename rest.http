@@ -1,8 +1,16 @@
 ### Get list from server
 
-
 GET http://localhost:8000/api/v1/tasks
-
 
 ### Post data to server
 POST http://localhost:8000/api/v1/tasks
+# header of the request
+Content-Type: application/json
+
+
+# body of the request, there should be gap between header and body
+{
+    "task" : "watching tv",
+    "hr": 10,
+    "type": "entry"
+}
