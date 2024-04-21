@@ -10,6 +10,10 @@ export const insertTask = (taskObj) => {
 
 //R
 
+export const getTasks = () => {
+  return TaskSchema.find();
+};
+
 //U
 
 //D

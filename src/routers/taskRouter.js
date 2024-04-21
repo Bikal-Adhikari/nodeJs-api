@@ -1,6 +1,7 @@
 import express from "express";
 import { idGenerator } from "../utils.js";
 import { insertTask } from "../models/task/taskModel.js";
+import { getTasks } from "../models/task/taskModel.js";
 const router = express.Router();
 
 let fakeDb = [];
@@ -8,10 +9,12 @@ let fakeDb = [];
 
 //get data
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  const result = await getTasks();
+  console.log(result);
   res.json({
     message: `Here are the tasks`,
-    data: fakeDb,
+    task: result,
   });
 });
 
