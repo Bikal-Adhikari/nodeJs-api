@@ -64,9 +64,11 @@ router.patch("/", async (req, res) => {
     const result = await updateTask(req.body);
     result?._id
       ? res.json({
+          status: "success",
           message: "Your task has been updated",
         })
       : res.json({
+          status: "failure",
           error: "The ID does not exist in our records",
         });
   } catch (error) {
@@ -83,9 +85,11 @@ router.delete("/", async (req, res) => {
     const result = await deleteTask(_id);
     result?._id
       ? res.json({
+          status: "success",
           message: "Your task has been removed",
         })
       : res.json({
+          status: "failure",
           error: "The ID does not exist in our records",
         });
   } catch (error) {
