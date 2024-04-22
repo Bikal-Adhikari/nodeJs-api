@@ -14,12 +14,21 @@ const router = express.Router();
 //get data
 
 router.get("/", async (req, res) => {
-  const result = await getTasks();
-  console.log(result);
-  res.json({
-    message: `Here are the tasks`,
-    task: result,
-  });
+  try {
+    const result = await getTasks();
+    console.log(result);
+    res.json({
+      status: "success",
+      message: `Here are the tasks`,
+      task: result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      status: "failure",
+      message: error.message,
+    });
+  }
 });
 
 //POST data
@@ -41,7 +50,7 @@ router.post("/", async (req, res) => {
         });
   } catch (error) {
     console.log(error);
-    res.status(500).sendStatusjson({
+    res.status(500).json({
       status: "failure",
       message: error.message,
     });
