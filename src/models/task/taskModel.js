@@ -21,3 +21,7 @@ export const updateTask = ({ _id, type }) => {
 };
 
 //D
+
+export const deleteTask = (_id) => {
+  return TaskSchema.findByIdAndDelete(_id);
+};

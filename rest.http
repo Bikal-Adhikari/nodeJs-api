@@ -10,7 +10,7 @@ Content-Type: application/json
 
 # body of the request, there should be gap between header and body
 {
-    "task" : "playing",
+    "task" : "shopping",
     "hr": 30,
     "type": "entry"
 }
@@ -33,6 +33,6 @@ Content-Type: application/json
 
 # body of the request, there should be gap between header and body
 {
-    "id":"EC4WTC"
+    "_id":"66259f5df1b5bb2af1aba48d"
    
 }
