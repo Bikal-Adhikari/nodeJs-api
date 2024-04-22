@@ -22,7 +22,7 @@ Content-Type: application/json
 
 # body of the request, there should be gap between header and body
 {
-    "id":"HwfCMx",
+    "_id":"661e0407ba9d7389f01733f0",
     "type": "bad"
 }
 ### delete data from server

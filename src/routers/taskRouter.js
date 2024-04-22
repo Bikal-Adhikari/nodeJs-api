@@ -1,6 +1,6 @@
 import express from "express";
 import { idGenerator } from "../utils.js";
-import { insertTask } from "../models/task/taskModel.js";
+import { insertTask, updateTask } from "../models/task/taskModel.js";
 import { getTasks } from "../models/task/taskModel.js";
 const router = express.Router();
 
@@ -40,18 +40,22 @@ router.post("/", async (req, res) => {
 
 //update data
 
-router.patch("/", (req, res) => {
-  const { id, type } = req.body;
-  fakeDb = fakeDb.map((item) => {
-    if (item.id === id) {
-      return { ...item, type };
-    }
-    return item;
-  });
-  res.json({
-    message: "Your task has been updated",
-  });
+router.patch("/", async (req, res) => {
+  try {
+    const result = await updateTask(req.body);
+    result?._id
+      ? res.json({
+          message: "Your task has been updated",
+        })
+      : res.json({
+          error: "The ID does not exist in our records",
+        });
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json({ message: "something went wrong, try again later" });
+  }
 });
+
 //delete data
 
 router.delete("/", (req, res) => {
