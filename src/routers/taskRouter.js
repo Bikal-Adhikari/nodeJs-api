@@ -4,8 +4,9 @@ import {
   deleteTask,
   insertTask,
   updateTask,
+  getTasks,
 } from "../models/task/taskModel.js";
-import { getTasks } from "../models/task/taskModel.js";
+
 const router = express.Router();
 
 //controllers
@@ -31,13 +32,19 @@ router.post("/", async (req, res) => {
     const result = await insertTask(req.body);
     result?._id
       ? res.json({
+          status: "success",
           message: `New data has been added`,
         })
       : res.json({
+          status: "failure",
           message: `Failed to add new data`,
         });
   } catch (error) {
     console.log(error);
+    res.status(500).sendStatusjson({
+      status: "failure",
+      message: error.message,
+    });
   }
 });
 
