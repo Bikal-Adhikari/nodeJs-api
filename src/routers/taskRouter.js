@@ -78,12 +78,14 @@ router.patch("/", async (req, res) => {
 });
 
 //delete data
-
+//single delete
+// router.delete("/:_id",async(req,res))
 router.delete("/", async (req, res) => {
   try {
-    const { _id } = req.body;
-    const result = await deleteTask(_id);
-    result?._id
+    const ids = req.body;
+    const result = await deleteTask(ids);
+    // result?._id
+    result?.deletedCount
       ? res.json({
           status: "success",
           message: "Your task has been removed",
